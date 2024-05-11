@@ -14,7 +14,7 @@ const {
 router.use(
   cors({
     credentials: true,
-    origin: "https://enghub2.onrender.com",
+    origin: "https://enghub-auth-h.onrender.com",
   })
 );
 
