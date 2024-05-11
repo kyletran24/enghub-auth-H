@@ -1,0 +1,49 @@
+@import 'index.scss';
+
+.Navbar {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  z-index: 99;
+
+  border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+
+  .LogoDiv {
+    margin: 20px
+  }
+
+  .NavButtons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .LoginButtonDiv {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .NavButton {
+      padding: 10px 20px;
+      margin: 10px;
+
+      background: rgba(255,255,255, 0.5);
+      background: linear-gradient(90deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.4) 100%);
+      
+      border: 1px solid rgba(255,255,255, 0.5);
+      border-radius: 10px;
+
+      font-family: "BDLifelessGrotesk";
+      font-weight: 300;
+      font-size: 14px;
+
+      color: white;
+      
+      .ButtonText {
+        margin: 0;
+        background-color: #e4d1b9;
+      }
+  }
+  
+}
+
