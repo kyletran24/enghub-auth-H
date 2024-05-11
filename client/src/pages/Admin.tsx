@@ -3,14 +3,14 @@ import BG1 from "./../assets/BG1.png";
 
 import { useState } from "react";
 import { useUserContext } from "../context/UserContext";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+// import { useNavigate } from "react-router-dom";
+// import axios from "axios";
 
 const Admin = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const user = useUserContext();
-  const [role, setRole] = useState("");
+  // const [role, setRole] = useState("");
 
   const [currentLesson, setLesson] = useState({});
 
