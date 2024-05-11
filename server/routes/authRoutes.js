@@ -14,7 +14,7 @@ const {
 router.use(
   cors({
     credentials: true,
-    origin: "https://enghub-auth.onrender.com",
+    origin: "http://localhost:5173",
   })
 );
 

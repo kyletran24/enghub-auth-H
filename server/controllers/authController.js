@@ -115,31 +115,30 @@ const loginUser = async (req, res) => {
           error: "no user found",
         });
       }
-    }
+      // Check if password match
+      const match = await comparePassword(password, student.password);
 
-    // Check if password match
-    const match = await comparePassword(password, student.password);
+      if (match) {
+        jwt.sign(
+          {
+            email: student.email,
+            id: student._id,
+            name: student.name,
+            lessons: student.lessons,
+          },
+          process.env.JWT_SECRET,
+          {},
+          (err, token) => {
+            if (err) throw err;
 
-    if (match) {
-      jwt.sign(
-        {
-          email: student.email,
-          id: student._id,
-          name: student.name,
-          lessons: student.lessons,
-        },
-        process.env.JWT_SECRET,
-        {},
-        (err, token) => {
-          if (err) throw err;
-
-          res.cookie("token", token).json(student);
-        }
-      );
-    } else {
-      res.json({
-        error: "password do not match",
-      });
+            res.cookie("token", token).json(student);
+          }
+        );
+      } else {
+        res.json({
+          error: "password do not match",
+        });
+      }
     }
   } catch (error) {
     console.log(error);
