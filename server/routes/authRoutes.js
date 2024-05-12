@@ -8,6 +8,7 @@ const {
   getProfile,
   getLessons,
   checkRole,
+  getAllStudents,
 } = require("../controllers/authController");
 
 // middleware
@@ -24,5 +25,6 @@ router.post("/login", loginUser);
 router.get("/profile", getProfile);
 router.get("/studentLessons", getLessons);
 router.get("/checkRole", checkRole);
+router.get("/allStudents", getAllStudents);
 
 module.exports = router;
