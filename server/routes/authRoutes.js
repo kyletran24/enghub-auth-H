@@ -8,6 +8,7 @@ const {
   getProfile,
   getLessons,
   checkRole,
+  getAllStudents,
 } = require("../controllers/authController");
 
 const {

@@ -198,8 +198,12 @@ const getAllStudents = async (req, res) => {
     jwt.verify(token, process.env.JWT_SECRET, {}, async (err, user) => {
       if (err) throw err;
 
-      if (user.role == "admin") {
-        const allStudents = await Students.findAll({});
+      const email = user.email;
+
+      const dbUser = await Admins.findOne({ email });
+
+      if (dbUser) {
+        const allStudents = await Students.find({});
 
         res.json(allStudents);
       } else {
@@ -220,4 +224,5 @@ module.exports = {
   getProfile,
   getLessons,
   checkRole,
+  getAllStudents,
 };
