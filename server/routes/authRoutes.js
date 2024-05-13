@@ -10,6 +10,12 @@ const {
   checkRole,
 } = require("../controllers/authController");
 
+const {
+  deleteStudent,
+  updateStudent,
+  createLesson,
+} = require("../controllers/adminController");
+
 // middleware
 router.use(
   cors({
@@ -24,5 +30,8 @@ router.post("/login", loginUser);
 router.get("/profile", getProfile);
 router.get("/studentLessons", getLessons);
 router.get("/checkRole", checkRole);
+router.delete("/deleteStudent", deleteStudent);
+router.put("/updateStudent", updateStudent);
+router.post("/createLesson", createLesson);
 
 module.exports = router;
