@@ -7,7 +7,7 @@ const {
   loginUser,
   getProfile,
   getLessons,
-  checkRole,
+  checkAdmin,
   getAllStudents,
 } = require("../controllers/authController");
 
@@ -15,13 +15,14 @@ const {
   deleteStudent,
   updateStudent,
   createLesson,
+  updateLesson,
 } = require("../controllers/adminController");
 
 // middleware
 router.use(
   cors({
     credentials: true,
-    origin: "http://localhost:5173",
+    origin: "https://enghub-auth.onrender.com",
   })
 );
 
@@ -29,10 +30,13 @@ router.get("/", test);
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.get("/profile", getProfile);
+router.get("/checkAdmin", checkAdmin);
+router.get("/allStudents", getAllStudents);
+
 router.get("/studentLessons", getLessons);
-router.get("/checkRole", checkRole);
 router.delete("/deleteStudent", deleteStudent);
 router.put("/updateStudent", updateStudent);
+router.put("/updateLesson", updateLesson);
 router.post("/createLesson", createLesson);
 
 module.exports = router;

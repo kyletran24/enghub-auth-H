@@ -1,5 +1,6 @@
 const Students = require("../models/student.model");
 const Admins = require("../models/admin.model");
+
 const { hashPassword, comparePassword } = require("../helpers/auth");
 const jwt = require("jsonwebtoken");
 
@@ -173,7 +174,7 @@ const getLessons = async (req, res) => {
   }
 };
 
-const checkRole = async (req, res) => {
+const checkAdmin = async (req, res) => {
   const { token } = req.cookies;
 
   if (token) {
@@ -182,12 +183,20 @@ const checkRole = async (req, res) => {
 
       const email = user.email;
 
-      const dbUser = await Students.findOne({ email });
+      const dbUser = await Admins.findOne({ email });
 
-      res.json(dbUser.role);
+      if (dbUser) {
+        res.json(dbUser);
+      } else {
+        res.json({
+          error: "not authorized",
+        });
+      }
     });
   } else {
-    res.json(undefined);
+    res.json({
+      error: "missing token",
+    });
   }
 };
 
@@ -213,7 +222,9 @@ const getAllStudents = async (req, res) => {
       }
     });
   } else {
-    res.json(undefined);
+    res.json({
+      error: "missing token",
+    });
   }
 };
 
@@ -223,6 +234,6 @@ module.exports = {
   loginUser,
   getProfile,
   getLessons,
-  checkRole,
+  checkAdmin,
   getAllStudents,
 };

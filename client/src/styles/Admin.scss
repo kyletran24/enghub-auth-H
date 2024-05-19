@@ -1,0 +1,90 @@
+.AdminPage .PageContent {
+  grid-template-columns: 1fr 4fr;
+}
+
+.AdminPage .PageContent {
+  .ContentRight {
+    background-color: white;
+
+    margin-top: 15px;
+    padding: 15px 30px 15px 30px;
+  }
+}
+
+.StudentsDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    margin-top: 15px;
+  }
+}
+
+.oneStudent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 70%;
+
+  .btn {
+    margin: 10px;
+  }
+}
+
+.StudentName {
+  cursor: pointer;
+  width: 100%;
+  margin-top: 5px;
+
+  border-radius: 10px;
+  border: 3px solid #E2AB2D;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.5 ease all;
+
+  &::hover {
+    background: #E2AB2D;
+    color: white;
+  }
+}
+
+.showOnEdit {
+  display: none;
+}
+
+.CurrentStudent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.LessonCards {
+  display: flex;
+  flex-direction: column;
+}
+
+.LessonCardGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  .LessonCard {
+    margin: 10px;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2)
+    }
+  }
+}
+
+.Popup {
+  z-index: 5;
+  visibility: visible;
+}

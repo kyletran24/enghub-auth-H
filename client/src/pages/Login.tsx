@@ -42,7 +42,14 @@ const Login = () => {
           password: "",
         });
         toast.success("Login successful!");
-        navigate("/student");
+
+        const { data } = await axios.get("/checkAdmin");
+
+        if (data.error) {
+          navigate("/student");
+        } else {
+          navigate("/student");
+        }
       }
     } catch (error) {
       console.log(error);

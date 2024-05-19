@@ -1,43 +1,69 @@
 import "../styles/Student.scss";
 import BG1 from "./../assets/BG1.png";
 
-import { useState } from "react";
-import { useUserContext } from "../context/UserContext";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-hot-toast";
+
+import { useUserContext } from "../context/UserContext";
+import ParseScore from "../helpers/ParseScore.tsx";
+
+interface lesson {
+  date: string;
+  listening: number;
+  reading: number;
+  writing: number;
+  speaking: number;
+}
 
 const Student = () => {
   const navigate = useNavigate();
 
   const user = useUserContext();
-  const [role, setRole] = useState("");
 
-  if (user) {
-    axios.get("/checkRole").then(({ data }) => {
-      setRole(data);
-    });
-
-    if (role == "admin") {
-      navigate("/admin");
+  useEffect(() => {
+    if (user) {
+      try {
+        axios.get("/checkAdmin").then(({ data }) => {
+          if (data.error) {
+          } else {
+            toast.success("Authorized.");
+            navigate("/admin");
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      navigate("/login");
     }
+  }, []);
 
-    const [currentLesson, setLesson] = useState({});
+  const [currentLesson, setLesson] = useState<lesson>({
+    date: "",
+    listening: 0,
+    reading: 0,
+    writing: 0,
+    speaking: 0,
+  });
 
-    return (
-      <div
-        className="Page StudentPage"
-        style={{ backgroundImage: `url(${BG1})` }}
-      >
-        <div className="PageContentWrapper">
-          <div className="PageContent">
-            <div className="ContentLeft">
-              <div className="ContentTitle">
-                <h3>Welcome, {user.name}</h3>
-              </div>
+  return (
+    <div
+      className="Page StudentPage"
+      style={{ backgroundImage: `url(${BG1})` }}
+    >
+      <div className="PageContentWrapper">
+        <div className="PageContent">
+          <div className="ContentLeft">
+            <div className="ContentTitle">
+              <h3>Welcome, {user.name}</h3>
+            </div>
 
-              <div className="LessonsDiv">
-                <h3>Your past lessons:</h3>
-                {user.lessons.map((lesson, index) => (
+            <div className="LessonsDiv">
+              <h3>Your past lessons:</h3>
+              {user.lessons ? (
+                user.lessons.map((lesson, index) => (
                   <div
                     className="LessonDate"
                     onClick={() => setLesson(lesson)}
@@ -45,39 +71,73 @@ const Student = () => {
                   >
                     {lesson["date"]}
                   </div>
-                ))}
-              </div>
+                ))
+              ) : (
+                <div></div>
+              )}
             </div>
+          </div>
 
-            <div className="ContentRight">
-              <div className="CurrentLesson">
-                <h3>
-                  {Object.keys(currentLesson).length !== 0
-                    ? `Date: ${Object.values(currentLesson)[0]}`
-                    : `Pick a date on the left bar`}
-                </h3>
-                {Object.entries(currentLesson)
-                  .slice(1)
-                  .slice(0, -1)
-                  .map((skill, id) => (
-                    <div>
-                      <h4>{`${skill[0].toUpperCase()}: ${skill[1]}`}</h4>
-                      <progress value={id} max="10"></progress>
+          <div className="ContentRight">
+            <div className="CurrentLesson">
+              {currentLesson.date ? (
+                <div>
+                  <h3>Date: {currentLesson.date}</h3>
+                  <div>
+                    <h4>Listening: {currentLesson.listening}</h4>
+                    <div className="meter">
+                      <span
+                        style={{
+                          width: ParseScore(currentLesson.listening) + "%",
+                        }}
+                      >
+                        <span className="progress"></span>
+                      </span>
                     </div>
-                  ))}
-              </div>
+
+                    <h4>Reading: {currentLesson.reading}</h4>
+                    <div className="meter">
+                      <span
+                        style={{
+                          width: ParseScore(currentLesson.reading) + "%",
+                        }}
+                      >
+                        <span className="progress"></span>
+                      </span>
+                    </div>
+
+                    <h4>Writing: {currentLesson.writing}</h4>
+                    <div className="meter">
+                      <span
+                        style={{
+                          width: ParseScore(currentLesson.writing) + "%",
+                        }}
+                      >
+                        <span className="progress"></span>
+                      </span>
+                    </div>
+
+                    <h4>Speaking: {currentLesson.speaking}</h4>
+                    <div className="meter">
+                      <span
+                        style={{
+                          width: ParseScore(currentLesson.speaking) + "%",
+                        }}
+                      >
+                        <span className="progress"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                `Pick a date on the left bar`
+              )}
             </div>
           </div>
         </div>
       </div>
-    );
-  } else {
-    return (
-      <div className="PageContentWrapper">
-        <div className="PageContent"></div>
-      </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default Student;

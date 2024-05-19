@@ -1,6 +1,8 @@
 import axios from "axios";
 import { createContext, useState, useEffect, useContext } from "react";
 
+import Loader from "../components/Loader";
+
 interface lesson {
   date: string;
   listening: number;
@@ -14,7 +16,6 @@ interface User {
   id: string;
   name: string;
   lessons: lesson[];
-  role: string;
 }
 
 export const UserContext = createContext<User | undefined>(undefined);
@@ -37,7 +38,12 @@ export function UserContextProvider({ children }: UserContextProviderType) {
   }, []);
 
   if (loading) {
-    return <div className="loadText">Loading...</div>;
+    return (
+      <div className="LoadText">
+        Loading data...
+        <Loader></Loader>
+      </div>
+    );
   }
 
   return <UserContext.Provider value={user}>{children}</UserContext.Provider>;

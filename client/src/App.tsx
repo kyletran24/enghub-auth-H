@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import axios from "axios";
 import { Toaster } from "react-hot-toast";
 
@@ -14,26 +14,34 @@ import Register from "./pages/Register.tsx";
 import Student from "./pages/Student.tsx";
 import Admin from "./pages/Admin.tsx";
 
-import { UserContextProvider } from "./context/UserContext.tsx";
+import { useUserContext } from "./context/UserContext.tsx";
 
-axios.defaults.baseURL = "http://localhost:8080";
+axios.defaults.baseURL = "https://enghub-auth-h.onrender.com";
 axios.defaults.withCredentials = true;
 
 function App() {
+  const user = useUserContext();
+
   return (
-    <UserContextProvider>
+    <>
       <Toaster position="top-left" toastOptions={{ duration: 3000 }} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/giaovien" element={<Giaovien />} />
         <Route path="/khoahoc" element={<Khoahoc />} />
         <Route path="/trainghiemhoc" element={<Trainghiem />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route
+          path="/login"
+          element={user ? <Navigate to="/student" /> : <Login />}
+        />
+        <Route
+          path="/register"
+          element={user ? <Navigate to="/student" /> : <Register />}
+        />
         <Route path="/student" element={<Student />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
-    </UserContextProvider>
+    </>
   );
 }
 

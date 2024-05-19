@@ -50,14 +50,6 @@ const Register = () => {
     } catch (error) {
       console.log(error);
     }
-
-    // axios
-    //   .post("/register", data)
-    //   .then((result) => {
-    //     console.log(result);
-    //     navigate("/login");
-    //   })
-    //   .catch((err) => console.log(err));
   };
 
   return (

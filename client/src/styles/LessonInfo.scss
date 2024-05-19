@@ -1,0 +1,122 @@
+.LessonInfo {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0 , 0.35);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  visibility: hidden;
+  z-index: -10;
+
+  cursor: default;
+
+  .LessonInfoWrapper {
+    display: grid;
+    grid-template-columns:  1fr 1fr;
+
+    height: 70vh;
+    width: 70vw;
+    background-color: white;
+    border-radius: 10px;
+
+    padding: 15px;
+
+    .LessonScores, .EditLessonForm {
+      display: flex;
+      flex-direction: column;
+
+      justify-content: center;
+      align-items: center;
+    }
+
+  
+
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: white;
+
+    input {
+      display: inline;
+      border-radius: 10px;
+      border: 3px solid #E2AB2D;  
+  
+      margin: 5px;
+    }
+  
+    button {
+      border-radius: 10px;
+      border: 2px solid #E2AB2D;
+      background-color: transparent;
+  
+      margin: 5px
+    }
+  }
+
+  
+}
+
+.Popup {
+  z-index: 5;
+  visibility: visible;
+}
+
+.closeButton {
+  position: relative;
+  top: 50px;
+  right: 50px;
+}
+
+.meter { 
+  height: 30px;
+  width: 200px;
+  border-radius: 5px;
+  
+  position: relative;
+  background: rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+
+  margin-bottom: 20px;
+}
+
+.meter span {
+  display: block;
+  height: 100%;
+
+  border-radius: 5px;
+}
+
+.progress {
+
+  background-color: #E2AB2D;
+  animation: progressBar 1s ease-in-out;
+  animation-fill-mode:both; 
+}
+
+@keyframes progressBar {
+0% { width: 0; }
+100% { width: 100%; }
+}
+
+.EditLessonBtn {
+  position: relative;
+  bottom: -10px;
+
+  z-index: 10;
+}
+
+.EditLessonForm {
+  z-index: -10;
+  visibility: hidden;
+}

@@ -9,10 +9,6 @@ const AdminSchema = mongoose.Schema({
     type: String,
     required: [true, "Please enter a valid password"],
   },
-  role: {
-    type: String,
-    required: true,
-  },
 });
 
 const Admins = mongoose.model("Admins", AdminSchema);

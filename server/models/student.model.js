@@ -10,6 +10,7 @@ const StudentSchema = mongoose.Schema({
   },
   password: {
     type: String,
+    select: false,
   },
   lessons: {
     type: [
@@ -22,10 +23,6 @@ const StudentSchema = mongoose.Schema({
       },
     ],
     required: false,
-  },
-  role: {
-    type: String,
-    required: true,
   },
 });
 

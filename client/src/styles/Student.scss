@@ -1,3 +1,17 @@
+.StudentPage .PageContent {
+  grid-template-columns: 1fr 4fr;
+}
+
+.StudentPage .PageContent {
+  .ContentRight {
+    background-color: white;
+
+    margin-top: 15px;
+    padding: 15px 30px 15px 30px;
+  }
+}
+
+
 .LessonDate {
   cursor: pointer;
   width: 50%;
@@ -25,4 +39,35 @@
   align-items: center;
 
 
+}
+
+.meter { 
+  height: 30px;
+  width: 200px;
+  border-radius: 5px;
+  
+  position: relative;
+  background: rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+
+  margin-bottom: 20px;
+}
+
+.meter span {
+  display: block;
+  height: 100%;
+
+  border-radius: 5px;
+}
+
+.progress {
+
+  background-color: #E2AB2D;
+  animation: progressBar 1s ease-in-out;
+  animation-fill-mode:both; 
+}
+
+@keyframes progressBar {
+0% { width: 0; }
+100% { width: 100%; }
 }
