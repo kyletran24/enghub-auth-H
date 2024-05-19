@@ -1,8 +1,38 @@
 import logo from "./../assets/Logo.png";
 import "../styles/Navbar.scss";
+
+import axios from "axios";
+import toast from "react-hot-toast";
+
 import { Link } from "react-router-dom";
+import { useUserContext } from "../context/UserContext";
+
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const user = useUserContext();
+  const navigate = useNavigate();
+
+  const LogOut = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+
+    try {
+      const { data } = await axios.get("/logout");
+
+      if (data.error) {
+        toast.error(data.error);
+      } else {
+        toast.success("Logged out!");
+
+        setTimeout(function () {
+          window.location.reload();
+        }, 2000);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="Navbar">
       <div className="LogoDiv">
@@ -35,11 +65,24 @@ const Navbar = () => {
       </div>
 
       <div className="LoginButtonDiv">
-        <Link to="/login">
-          <button className="NavButton">
-            <p className="ButtonText">Login</p>
-          </button>
-        </Link>
+        {user ? (
+          <div className="LoggedInNav">
+            <Link to="/student">
+              <button className="NavButton">
+                <p className="ButtonText">Trang cá nhân</p>
+              </button>
+            </Link>
+            <button className="LogOutButton NavButton" onClick={LogOut}>
+              Logout
+            </button>
+          </div>
+        ) : (
+          <Link to="/login">
+            <button className="NavButton">
+              <p className="ButtonText">Login</p>
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );

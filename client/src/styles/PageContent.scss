@@ -99,7 +99,10 @@
 
 .ContentRight {
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  max-height: 90vh;
 
   display: flex;
   align-items: center;

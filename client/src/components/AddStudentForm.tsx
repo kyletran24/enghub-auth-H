@@ -37,7 +37,8 @@ const AddStudentForm = () => {
           email: "",
           password: "",
         });
-        toast.success("Đã thêm học sinh. Refresh để thấy học sinh mới!");
+        toast.success("Đã thêm học sinh.");
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);

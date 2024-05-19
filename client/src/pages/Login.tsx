@@ -43,13 +43,7 @@ const Login = () => {
         });
         toast.success("Login successful!");
 
-        const { data } = await axios.get("/checkAdmin");
-
-        if (data.error) {
-          navigate("/student");
-        } else {
-          navigate("/student");
-        }
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);

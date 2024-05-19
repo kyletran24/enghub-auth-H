@@ -8,6 +8,7 @@ import { toast } from "react-hot-toast";
 
 import { useUserContext } from "../context/UserContext";
 import ParseScore from "../helpers/ParseScore.tsx";
+import Linechart from "../components/Linechart";
 
 interface lesson {
   date: string;
@@ -21,6 +22,26 @@ const Student = () => {
   const navigate = useNavigate();
 
   const user = useUserContext();
+
+  const LogOut = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+
+    try {
+      const { data } = await axios.get("/logout");
+
+      if (data.error) {
+        toast.error(data.error);
+      } else {
+        toast.success("Logged out!");
+
+        setTimeout(function () {
+          window.location.reload();
+        }, 2000);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     if (user) {
@@ -79,7 +100,15 @@ const Student = () => {
           </div>
 
           <div className="ContentRight">
+            <button
+              className="LogOutButton NavButton btn btn-primary"
+              onClick={LogOut}
+            >
+              Logout
+            </button>
             <div className="CurrentLesson">
+              <h3>Your progress:</h3>
+              <Linechart data={user.lessons}></Linechart>
               {currentLesson.date ? (
                 <div>
                   <h3>Date: {currentLesson.date}</h3>
@@ -130,7 +159,7 @@ const Student = () => {
                   </div>
                 </div>
               ) : (
-                `Pick a date on the left bar`
+                `Pick a date on the left bar for more details`
               )}
             </div>
           </div>

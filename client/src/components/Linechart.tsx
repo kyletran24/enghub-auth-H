@@ -1,3 +1,5 @@
+import { useUserContext } from "../context/UserContext";
+
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -22,6 +24,12 @@ interface Props {
 }
 
 const Linechart = ({ data }: Props) => {
+  if (!data) {
+    return <div></div>;
+  }
+
+  const user = useUserContext();
+
   const chartData = {
     labels: data.map((lesson) => lesson.date),
     datasets: [
@@ -58,15 +66,6 @@ const Linechart = ({ data }: Props) => {
         pointBorderWidth: 4,
       },
     ],
-    plugins: {
-      legend: {
-        display: true,
-      },
-      title: {
-        display: true,
-        text: "Student's scores across lessons",
-      },
-    },
   };
 
   return (

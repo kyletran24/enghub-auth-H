@@ -76,9 +76,8 @@ const LessonInfo = ({
           writing: 0,
           speaking: 0,
         });
-        toast.success(
-          "Đã sửa thông tin buổi học. Refresh để cập nhật thông tin mới"
-        );
+        toast.success("Đã sửa thông tin buổi học.");
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);

@@ -48,7 +48,8 @@ const AddLessonForm = ({ studentEmail }: Props) => {
           writing: 0,
           speaking: 0,
         });
-        toast.success("Đã thêm buổi học. Refresh để thấy buổi học mới!");
+        toast.success("Đã thêm buổi học.");
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);

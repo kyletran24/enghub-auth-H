@@ -25,7 +25,7 @@ const registerUser = async (req, res) => {
       });
     }
 
-    const exist = await Students.findOne({ email });
+    const exist = await Students.findOne({ email: email });
 
     if (exist) {
       return res.json({
@@ -82,7 +82,7 @@ const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
     // Check if admin
-    const admin = await Admins.findOne({ email });
+    const admin = await Admins.findOne({ email: email });
 
     if (admin) {
       // Check if password match
@@ -95,7 +95,7 @@ const loginUser = async (req, res) => {
             id: admin._id,
           },
           process.env.JWT_SECRET,
-          {},
+          { expiresIn: "1d" },
           (err, token) => {
             if (err) throw err;
 
@@ -109,7 +109,7 @@ const loginUser = async (req, res) => {
       }
     } else {
       // Check if user exists
-      const student = await Students.findOne({ email });
+      const student = await Students.findOne({ email: email });
 
       if (!student) {
         return res.json({
@@ -117,6 +117,7 @@ const loginUser = async (req, res) => {
         });
       }
       // Check if password match
+
       const match = await comparePassword(password, student.password);
 
       if (match) {
@@ -144,6 +145,18 @@ const loginUser = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+const logoutUser = async (req, res) => {
+  const options = {
+    expires: new Date(Date.now() + 1000),
+  };
+  res.cookie("token", "token", options);
+  res.status(200).json({
+    status: "success",
+    secure: true,
+    httpOnly: true,
+  });
 };
 
 const getProfile = async (req, res) => {
@@ -181,9 +194,7 @@ const checkAdmin = async (req, res) => {
     jwt.verify(token, process.env.JWT_SECRET, {}, async (err, user) => {
       if (err) throw err;
 
-      const email = user.email;
-
-      const dbUser = await Admins.findOne({ email });
+      const dbUser = await Admins.findOne({ email: user.email });
 
       if (dbUser) {
         res.json(dbUser);
@@ -209,7 +220,7 @@ const getAllStudents = async (req, res) => {
 
       const email = user.email;
 
-      const dbUser = await Admins.findOne({ email });
+      const dbUser = await Admins.findOne({ email: user.email });
 
       if (dbUser) {
         const allStudents = await Students.find({});
@@ -236,4 +247,5 @@ module.exports = {
   getLessons,
   checkAdmin,
   getAllStudents,
+  logoutUser,
 };

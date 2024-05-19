@@ -38,7 +38,11 @@
   justify-content: center;
   align-items: center;
 
+  margin-top: 45px;
 
+  h3 {
+    margin: 10px;
+  }
 }
 
 .meter { 
@@ -70,4 +74,10 @@
 @keyframes progressBar {
 0% { width: 0; }
 100% { width: 100%; }
+}
+
+.StudentPage .LogOutButton {
+  position: absolute;
+  top: 50px;
+  right: 50px;
 }
