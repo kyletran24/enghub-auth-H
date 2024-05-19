@@ -26,8 +26,6 @@ router.use(
     origin: "https://enghub-auth.onrender.com",
   })
 );
-
-router.get("/", test);
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.get("/logout", logoutUser);

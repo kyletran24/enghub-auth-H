@@ -58,8 +58,6 @@ const Login = () => {
               <h3>ĐĂNG NHẬP</h3>
             </div>
 
-            {/* <h4 className="LoginError">Error: {error}</h4> */}
-
             <form className="LoginForm" onSubmit={loginUser}>
               <label>Email</label>
               <input
