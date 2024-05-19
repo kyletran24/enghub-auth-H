@@ -27,6 +27,7 @@ router.use(
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
+
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.get("/logout", logoutUser);
