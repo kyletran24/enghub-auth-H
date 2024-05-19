@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://enghub-frontend.vercel.app/"
+    "https://enghub-frontend.vercel.app"
   );
 
   res.setHeader(
