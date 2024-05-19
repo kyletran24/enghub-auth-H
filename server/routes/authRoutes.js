@@ -24,6 +24,7 @@ router.use(
   cors({
     credentials: true,
     origin: "https://enghub-auth.onrender.com/",
+    methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 router.post("/register", registerUser);

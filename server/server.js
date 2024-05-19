@@ -22,9 +22,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/", express.static(path.join(__dirname, "./routes/authRoutes")));
+// app.use("/", express.static(path.join(__dirname, "./routes/authRoutes")));
 
-// require("./routes/authRoutes"));
+app.use("/", require("./routes/authRoutes"));
 
 const PORT = process.env.PORT || 8080;
 
