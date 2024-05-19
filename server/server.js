@@ -24,6 +24,13 @@ app.use(express.urlencoded({ extended: false }));
 
 // app.use("/", express.static(path.join(__dirname, "./routes/authRoutes")));
 
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://enghub-auth.onrender.com"
+  );
+});
+
 app.use("/", require("./routes/authRoutes"));
 
 const PORT = process.env.PORT || 8080;
