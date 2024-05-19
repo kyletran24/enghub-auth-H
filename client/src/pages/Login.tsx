@@ -1,7 +1,7 @@
 import "../styles/PageContent.scss";
 import "../styles/Page.scss";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -20,8 +20,6 @@ const Login = () => {
     email: "",
     password: "",
   });
-
-  const navigate = useNavigate();
 
   const loginUser = async (e: React.SyntheticEvent) => {
     e.preventDefault();

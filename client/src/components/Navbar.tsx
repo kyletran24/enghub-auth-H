@@ -7,11 +7,8 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
 
-import { useNavigate } from "react-router-dom";
-
 const Navbar = () => {
   const user = useUserContext();
-  const navigate = useNavigate();
 
   const LogOut = async (e: React.SyntheticEvent) => {
     e.preventDefault();

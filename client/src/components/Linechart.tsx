@@ -1,5 +1,3 @@
-import { useUserContext } from "../context/UserContext";
-
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -27,8 +25,6 @@ const Linechart = ({ data }: Props) => {
   if (!data) {
     return <div></div>;
   }
-
-  const user = useUserContext();
 
   const chartData = {
     labels: data.map((lesson) => lesson.date),
