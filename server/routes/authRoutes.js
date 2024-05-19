@@ -23,7 +23,7 @@ const {
 router.use(
   cors({
     credentials: true,
-    origin: "https://enghub-auth.onrender.com",
+    origin: "https://enghub-auth.onrender.com/",
   })
 );
 router.post("/register", registerUser);
