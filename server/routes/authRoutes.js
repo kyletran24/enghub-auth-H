@@ -23,7 +23,7 @@ const {
 router.use(
   cors({
     credentials: true,
-    origin: "https://enghub-auth.onrender.com",
+    origin: "https://enghub-frontend.vercel.app/",
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );

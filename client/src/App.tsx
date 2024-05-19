@@ -16,7 +16,7 @@ import Admin from "./pages/Admin.tsx";
 
 import { useUserContext } from "./context/UserContext.tsx";
 
-axios.defaults.baseURL = "https://enghub-auth-h.onrender.com";
+axios.defaults.baseURL = "https://enghub-backend.vercel.app/";
 axios.defaults.withCredentials = true;
 
 function App() {
