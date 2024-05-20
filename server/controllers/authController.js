@@ -140,7 +140,7 @@ const loginUser = async (req, res) => {
                 maxAge: 86400,
                 secure: true,
                 sameSite: "none",
-                domain: "https://kyletran.me",
+                domain: "https://www.kyletran.me",
               })
               .json(student);
           }
