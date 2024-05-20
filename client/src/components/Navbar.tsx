@@ -69,7 +69,7 @@ const Navbar = () => {
                 <p className="ButtonText">Trang cá nhân</p>
               </button>
             </Link>
-            <button className="LogOutButton NavButton" onClick={LogOut}>
+            <button className="LogOutButton NavButton" onClick={() => LogOut}>
               Logout
             </button>
           </div>

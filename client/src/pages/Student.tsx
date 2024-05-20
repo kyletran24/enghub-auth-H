@@ -102,7 +102,7 @@ const Student = () => {
           <div className="ContentRight">
             <button
               className="LogOutButton NavButton btn btn-primary"
-              onClick={LogOut}
+              onClick={() => LogOut}
             >
               Logout
             </button>
