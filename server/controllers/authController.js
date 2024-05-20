@@ -99,13 +99,7 @@ const loginUser = async (req, res) => {
           (err, token) => {
             if (err) throw err;
 
-            res
-              .cookie("token", token, {
-                secure: true,
-                maxAge: 64800,
-                sameSite: "None",
-              })
-              .json(admin);
+            res.cookie("token", token).json(admin);
           }
         );
       } else {
