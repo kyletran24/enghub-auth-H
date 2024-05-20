@@ -137,7 +137,6 @@ const loginUser = async (req, res) => {
 
             res
               .cookie("token", token, {
-                maxAge: 86400,
                 secure: true,
                 sameSite: "none",
                 domain: "https://www.kyletran.me",
