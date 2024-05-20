@@ -23,7 +23,7 @@ const {
 router.use(
   cors({
     credentials: true,
-    origin: "https://www.kyletran.me",
+    origin: "https://enghub.netlify.app/",
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
