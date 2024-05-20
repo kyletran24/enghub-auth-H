@@ -135,7 +135,14 @@ const loginUser = async (req, res) => {
           (err, token) => {
             if (err) throw err;
 
-            res.cookie("token", token).json(student);
+            res
+              .cookie("token", token, {
+                maxAge: 86400,
+                secure: true,
+                sameSite: "none",
+                domain: "enghub.netlify.app",
+              })
+              .json(student);
           }
         );
       } else {
