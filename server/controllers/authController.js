@@ -140,7 +140,7 @@ const loginUser = async (req, res) => {
                 maxAge: 86400,
                 secure: true,
                 sameSite: "none",
-                domain: "enghub.netlify.app",
+                domain: "https://kyletran.me",
               })
               .json(student);
           }
