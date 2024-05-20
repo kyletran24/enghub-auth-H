@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 // app.use("/", express.static(path.join(__dirname, "./routes/authRoutes")));
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://www.kyletran.me/");
+  res.setHeader("Access-Control-Allow-Origin", "https://www.kyletran.me");
 
   res.setHeader(
     "Access-Control-Allow-Headers",
