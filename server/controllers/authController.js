@@ -88,6 +88,8 @@ const loginUser = async (req, res) => {
       // Check if password match
       const match = await comparePassword(password, admin.password);
 
+      console.log(match);
+
       if (match) {
         jwt.sign(
           {
