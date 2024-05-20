@@ -25,6 +25,8 @@ router.use(
     credentials: true,
     origin: "https://www.kyletran.me",
     methods: ["GET", "POST", "PUT", "DELETE"],
+    Headers: true,
+    exposedHeaders: "Set-Cookie",
   })
 );
 
