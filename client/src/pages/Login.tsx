@@ -1,7 +1,7 @@
 import "../styles/PageContent.scss";
 import "../styles/Page.scss";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -21,7 +21,7 @@ const Login = () => {
     password: "",
   });
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const loginUser = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -43,9 +43,9 @@ const Login = () => {
         });
         toast.success("Login successful!");
 
-        // navigate("/student");
+        navigate("/student");
 
-        window.location.reload();
+        // window.location.reload();
       }
     } catch (error) {
       console.log(error);

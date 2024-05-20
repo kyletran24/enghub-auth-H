@@ -21,7 +21,7 @@ axios.defaults.withCredentials = true;
 
 function App() {
   const user = useUserContext();
-
+  console.log(user);
   return (
     <>
       <Toaster position="top-left" toastOptions={{ duration: 3000 }} />
