@@ -88,8 +88,6 @@ const loginUser = async (req, res) => {
       // Check if password match
       const match = await comparePassword(password, admin.password);
 
-      console.log(match);
-
       if (match) {
         jwt.sign(
           {
@@ -139,6 +137,8 @@ const loginUser = async (req, res) => {
           (err, token) => {
             if (err) throw err;
 
+            console.log("reach before res cookie");
+
             res
               .cookie("token", token, {
                 maxAge: 86400,
@@ -147,6 +147,8 @@ const loginUser = async (req, res) => {
                 domain: "https://www.kyletran.me",
               })
               .json(student);
+
+            console.log("reach after res cookie");
           }
         );
       } else {
