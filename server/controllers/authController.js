@@ -120,7 +120,11 @@ const loginUser = async (req, res) => {
       }
       // Check if password match
 
+      console.log("found student");
+
       const match = await comparePassword(password, student.password);
+
+      console.log("checking match: ", match);
 
       if (match) {
         jwt.sign(
